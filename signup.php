@@ -1,5 +1,7 @@
 <?php
 
+    include_once(__DIR__ . "/classes/User.php");
+
 	function canLogin($email, $password){
 		if($email === "Arno@shop.com" && $password === "12345isnotsecure"){
 			return true;
@@ -10,19 +12,16 @@
 	}
 
 	if(!empty($_POST)){
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-
-		if(canLogin($email, $password)){
-	    	session_start();
-			$_SESSION['logged in'] = true;
-			$_SESSION['email'] = $email;
-			header('Location: login.php');
-		}
-		else{
-			$error = true;
-		}
-		
+		try{
+            $user = new User();
+            $user->setFirst_name($_POST['first_name']);
+            $user->setLast_name($_POST['last_name']);
+            $user->setEmail($_POST['email']);
+            $user->save();
+          }
+          catch(Exception $e){
+            $error = $e->getMessage();
+          }
 	}
 ?><!DOCTYPE html>
 <html lang="en">
@@ -43,9 +42,19 @@
     <form action="" method="post">
         <?php if(isset($error)): ?>
         <div class="form__error">
-			<p>Email or password was not filled in</p>
+			<p><?php echo $error; ?></p>
 		</div>
         <?php endif; ?>
+
+        <div class="form__field">
+            <label for="first_name">First name</label>
+            <input type="text" name="first_name">
+        </div>
+
+        <div class="form__field">
+            <label for="last_name">Last name</label>
+            <input type="text" name="last_name">
+        </div>
         
         <div class="form__field">
             <label for="Email">Email</label>
