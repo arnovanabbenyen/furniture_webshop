@@ -18,7 +18,7 @@
 
 <nav class="navbar">
     <a href="index.php" class="logo">HENK</a>
-        <a href="#">Thibault likes snow bunnies</a>
+        <a href="#">Eetkamerstoelen</a>
         <a href="#">Zitbanken</a>
         <a href="#">Fauteuils</a>
         <a href="#">Poefs</a>
