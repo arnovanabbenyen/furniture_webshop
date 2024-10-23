@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #fff;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1.3em;
+    background-color: #F1F0EA;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5em;
+}
+
+.navbar .logo {
+    font-weight: bold;
+    font-size: 31px;
+    margin-right: 3em;
+}
+
+a.logout{
+  margin-left: 2em;
+  margin-right: 0;
+}
+
+.navbar form {
+    flex: 0.5;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.navbar input {
+    width: 100%;
+    max-width: 200px;
+    background-color: white;
+    color: black;
+    padding: 0.5em;
+    border: 1px solid white;
+}
