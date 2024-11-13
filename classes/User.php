@@ -1,4 +1,5 @@
 <?php
+    namespace php\Webshop;
 
     include_once("Db.php");
 
