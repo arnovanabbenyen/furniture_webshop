@@ -1,0 +1,15 @@
+{
+    "name": "arnov/webshop",
+    "autoload": {
+        "psr-4": {
+            "php\\Webshop\\": "classes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arno",
+            "email": "r0893222@student.thomasmore.be"
+        }
+    ],
+    "require": {}
+}
