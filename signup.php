@@ -17,6 +17,7 @@
             $user->setFirst_name($_POST['first_name']);
             $user->setLast_name($_POST['last_name']);
             $user->setEmail($_POST['email']);
+            $user->setPassword($_POST['password']);
             $user->save();
           }
           catch(Exception $e){
@@ -64,11 +65,6 @@
         <div class="form__field">
             <label for="Password">Password</label>
             <input type="password" name="password">
-        </div>
-
-        <div class="form__field">
-            <label for="Confirm">Confirm Password</label>
-            <input type="password" name="confirmPassword">
         </div>
 
         <div class="login">

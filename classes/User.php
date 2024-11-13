@@ -2,11 +2,11 @@
 
     include_once("Db.php");
 
-    class User{
-        private $first_name;
-        private $last_name;
-        private $email;
-        private $password;
+    abstract class User{
+        protected $first_name;
+        protected $last_name;
+        protected $email;
+        protected $password;
 
         /**
          * Get the value of first_name
@@ -24,7 +24,7 @@
         public function setFirst_name($first_name)
         {
 
-            if(empty($firstname)){
+            if(empty($first_name)){
                 throw new Exception("Firstname cannot be empty");
             }
                 $this->first_name = $first_name;
@@ -47,7 +47,7 @@
          */ 
         public function setLast_name($last_name)
         {       
-                if(empty($lastname)){
+                if(empty($last_name)){
                     throw new Exception("Lastname cannot be empty");
                 }
                 $this->last_name = $last_name;
@@ -109,4 +109,11 @@
             $statement->bindValue(':password', $this->password);
             return $statement->execute();
         }
+
+        public static function getAll(){
+            $conn = new PDO('mysql:host=127.0.0.1;dbname=webshop', 'root', ''); //Db::getConnection();
+            $statement = $conn->query('SELECT * FROM user');
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
     }
