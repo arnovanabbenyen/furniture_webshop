@@ -2,14 +2,6 @@
 
     include_once(__DIR__ . "/classes/User.php");
 
-	function canLogin($email, $password){
-		if($email === "Arno@shop.com" && $password === "12345isnotsecure"){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 
 	if(!empty($_POST)){
 		try{
@@ -19,6 +11,7 @@
             $user->setEmail($_POST['email']);
             $user->setPassword($_POST['password']);
             $user->save();
+            header('Location: login.php');
           }
           catch(Exception $e){
             $error = $e->getMessage();

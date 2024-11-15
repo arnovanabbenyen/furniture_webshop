@@ -28,7 +28,7 @@
       <input placeholder="search" type="text" name="search">
     </form>
     
-    <a href="login.php" class="logout" >Logout</a>
+    <a href="login.php" class="logout" ><p></p>Logout</a>
 </nav>
 
 

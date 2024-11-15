@@ -1,13 +1,24 @@
 <?php
 
-	function canLogin($email, $password){
-		if($email === "Arno@shop.com" && $password === "12345isnotsecure"){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+    include_once(__DIR__ . "/classes/Db.php");
+
+    function canLogin($email, $password){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare('SELECT * FROM user WHERE email = :email');
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if($user){
+            $hash = $user['password'];
+            if(password_verify($password, $hash)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
 
 	if(!empty($_POST)){
 		$email = $_POST['email'];

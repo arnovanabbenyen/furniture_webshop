@@ -1,9 +1,8 @@
 <?php
-    namespace php\Webshop;
 
     include_once("Db.php");
 
-    abstract class User{
+    class User{
         protected $first_name;
         protected $last_name;
         protected $email;
@@ -95,7 +94,11 @@
         {       if(empty($password)){
                     throw new Exception("Password cannot be empty");
                 }
-                $this->password = $password;
+                $options = [
+                    'cost' => 12,
+                ];
+                $hash= password_hash($password, PASSWORD_DEFAULT, $options);
+                $this->password = $hash;
 
                 return $this;
         }
