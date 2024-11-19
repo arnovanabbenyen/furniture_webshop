@@ -48,3 +48,49 @@ a.logout{
     padding: 0.5em;
     border: 1px solid white;
 }
+
+.promo_video .video video {
+  width: 100%; /* Pas aan naar wens, bijvoorbeeld 300px of 50% */
+  height: auto; /* Behoudt de aspectratio */
+  
+}
+
+
+.our_products {
+    gap: 1.5rem; 
+  }
+  
+  .our_products_header {
+    padding-top: 1.5rem;
+    margin-bottom: 2rem; 
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+  
+  .products {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .product {
+    max-width: 370px; 
+  }
+  
+  .product a {
+    text-decoration: none; 
+    color: black;
+  }
+  
+  .product img {
+    max-width: 370px; 
+    height: auto;
+    border-radius: 8px; 
+    margin-bottom: 0.8rem;
+  }
+
+  
+  .item__title {
+    font-size: 1.2rem;
+  }
+  
