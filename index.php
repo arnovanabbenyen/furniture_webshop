@@ -16,16 +16,7 @@
 </head>
 <body>
 
-<nav class="navbar">
-    <a href="index.php" class="logo">HENK</a>
-        <a href="products.php">All products</a>
-        <a href="#">Dinning room chairs</a>
-        <a href="#">Sofas</a>
-        <a href="#">Armchairs</a>
-        <a href="#">Poufs</a>
-    
-    <a href="login.php" class="logout" ><p></p>Logout</a>
-</nav>
+<?php include_once("nav.inc.php"); ?>
 
 <main>
 
@@ -42,7 +33,7 @@
   </div>
 
   <div class="products">
-    <div class="product">
+    <div class="product_drc">
       <a href="#">
         <img  src="Images/product_drc.webp" alt="">
         <div class="item__content">
@@ -51,7 +42,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product_drc">
       <a href="#">
         <img  src="Images/product_sofa.jpg" alt="">
         <div class="item__content">
@@ -60,7 +51,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product_drc">
       <a href="#">
         <img  src="Images/product_armchair.jpg" alt="">
         <div class="item__content">
@@ -69,7 +60,7 @@
       </a>
     </div>
 
-    <div class="product">
+    <div class="product_drc">
       <a href="#">
         <img  src="Images/product_pouf.jpg" alt="">
         <div class="item__content">

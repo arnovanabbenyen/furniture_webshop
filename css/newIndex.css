@@ -73,18 +73,18 @@ a.logout{
     justify-content: space-evenly;
   }
   
-  .product {
+  .product_drc {
     max-width: 370px; 
   }
   
-  .product a {
+  .product_drc a {
     text-decoration: none; 
     color: black;
   }
   
-  .product img {
+  .product_drc img {
     max-width: 370px; 
-    height: auto;
+    max-height: auto;
     border-radius: 8px; 
     margin-bottom: 0.8rem;
   }
