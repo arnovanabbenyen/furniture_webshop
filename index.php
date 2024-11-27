@@ -8,9 +8,6 @@
   $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
   $db = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
 
-  $users = $db->query('SELECT * FROM users');
-  var_dump($users->fetchAll());
-
   /*$host = 'localhost';
   $db = 'webshop';
   $user = 'root';
