@@ -1,5 +1,5 @@
 <?php
-  $pathToSSL = __DIR__ . '/CA.pem';
+  $pathToSSL = __DIR__ . '/DigiCertGlobalRootG2.crt.pem';
   $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
   $host = 'studiohenkfurniture.mysql.database.azure.com';
