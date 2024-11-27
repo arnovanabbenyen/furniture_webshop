@@ -1,15 +1,15 @@
 <?php
-  /*$pathToSSL = __DIR__ . '/CA.pem';
+  $pathToSSL = __DIR__ . '/CA.pem';
   $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
-  $host = 'studioHenkFurniture.mysql.database.azure.com';
+  $host = 'studiohenkfurniture.mysql.database.azure.com';
   $db = 'webshop';
   $user = 'Arno';
   $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
   $db = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
 
   $users = $db->query('SELECT * FROM users');
-  var_dump($users->fetchAll());*/
+  var_dump($users->fetchAll());
 
   session_start();
   if($_SESSION['logged in'] !== true){
