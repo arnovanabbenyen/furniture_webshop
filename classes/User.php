@@ -105,7 +105,7 @@
 
         public function save(){
             //PDO connection
-            $conn = new PDO('mysql:host=127.0.0.1;dbname=webshop', 'root', ''); //Db::getConnection();
+            $conn = Db::getConnection();
             $statement = $conn->prepare('INSERT INTO user (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)');
             $statement->bindValue(':first_name', $this->first_name);
             $statement->bindValue(':last_name', $this->last_name);
@@ -115,7 +115,7 @@
         }
 
         public static function getAll(){
-            $conn = new PDO('mysql:host=127.0.0.1;dbname=webshop', 'root', ''); //Db::getConnection();
+            $conn = Db::getConnection();
             $statement = $conn->query('SELECT * FROM user');
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
