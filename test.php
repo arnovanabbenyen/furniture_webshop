@@ -1,5 +1,7 @@
 <?php
-  include_once(__DIR__ . "/classes/Db.php");
+    include_once(__DIR__ . "/classes/Db.php");
+
+  
 
 
 ?><!DOCTYPE html>
