@@ -73,16 +73,16 @@ a.logout{
     justify-content: space-evenly;
   }
   
-  .product_drc {
+  .product {
     max-width: 370px; 
   }
   
-  .product_drc a {
+  .product a {
     text-decoration: none; 
     color: black;
   }
   
-  .product_drc img {
+  .product img {
     max-width: 370px; 
     max-height: auto;
     border-radius: 8px; 
@@ -93,4 +93,24 @@ a.logout{
   .item__title {
     font-size: 1.2rem;
   }
+
+  .collection{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    justify-items: center;
+    padding-top: 5rem;
+  }
   
+  
+  .collection_product img{
+    width: 300px;
+    height: 300px;
+    background-color: #E6E6E6;
+    border-radius: 8px;
+    
+  }
+
+  .collection_product a{
+    text-decoration: none;
+    color: black;
+  }
