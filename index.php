@@ -3,7 +3,7 @@
   $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
   $host = 'studiohenkfurniture.mysql.database.azure.com';
-  $db = 'studioHenkFurniture';
+  $db = 'Henk';
   $user = 'Arno';
   $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
   $db = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
