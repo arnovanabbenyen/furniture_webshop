@@ -38,7 +38,7 @@
             if (self::$conn === null) {
                 echo "2\n";
     
-                $pathToSSL = '../cacert.pem';
+                $pathToSSL = './cacert.pem';
     
                 // Ensure the certificate file exists
                 if (!file_exists($pathToSSL)) {
