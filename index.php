@@ -1,15 +1,25 @@
 <?php
-  $pathToSSL = __DIR__ . '/DigiCertGlobalRootG2.crt.pem';
+  $pathToSSL = __DIR__ . '/cacert.pem';
   $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
   $host = 'studiohenkfurniture.mysql.database.azure.com';
-  $db = 'webshop';
+  $db = 'studioHenkFurniture';
   $user = 'Arno';
   $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
   $db = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
 
   $users = $db->query('SELECT * FROM users');
   var_dump($users->fetchAll());
+
+  /*$host = 'localhost';
+  $db = 'webshop';
+  $user = 'root';
+  $db = new PDO("mysql:host=$host;dbname=$db", $user);*/
+
+ 
+  
+
+  
 
   session_start();
   if($_SESSION['logged in'] !== true){
