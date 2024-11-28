@@ -1,6 +1,6 @@
 <?php
 
-    /*class Db{
+    class Db{
         private static $conn = null;
 
         public static function getConnection(){
@@ -10,7 +10,7 @@
 
             echo "2";
 
-                $pathToSSL = __DIR__ . '/cacert.pem';
+                $pathToSSL = './cacert.pem';
                 $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
                 $host = 'studiohenkfurniture.mysql.database.azure.com';
@@ -27,9 +27,9 @@
                 return $conn;
             }
         }
-    }*/
+    }
 
-    class Db {
+    /*class Db {
         private static $conn = null;
     
         public static function getConnection() {
@@ -79,4 +79,4 @@
     
     // Test the connection
     Db::getConnection();
-
+    */
