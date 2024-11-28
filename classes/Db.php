@@ -17,10 +17,10 @@
                 $db = 'henk';
                 $user = 'Arno';
                 $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
-                $db = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
+                $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
                 $users = $db->query('SELECT * FROM user');
                 var_dump($users->fetchAll());
-                self::$conn = $db;
+                self::$conn;
                 return self::$conn;
             }
             else{
