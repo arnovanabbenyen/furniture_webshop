@@ -1,15 +1,12 @@
 <?php
 
-    class Db{
-        private static $conn = null;
+class Db {
+    private static $conn = null;
 
-        public static function getConnection(){
-            echo "1";
-            //Db::getConnection();
-            if(self::$conn == null){
-
-            echo "2";
-
+    public static function getConnection() {
+        // Db::getConnection();
+        if (self::$conn == null) {
+            try {
                 $pathToSSL = './cacert.pem';
                 $options = array(PDO::MYSQL_ATTR_SSL_CA => $pathToSSL);
 
@@ -17,17 +14,17 @@
                 $db = 'henk';
                 $user = 'Arno';
                 $pass = '$2y$12$1D3KI6THZZzYSXw6SjFz6.OB/Hn/JbgK/rnIbsZKzKgPgxYJX21LK';
-                $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
-                $users = $db->query('SELECT * FROM user');
-                var_dump($users->fetchAll());
-                self::$conn;
-                return self::$conn;
-            }
-            else{
-                return $conn;
+                self::$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                // Handle the error, for example, log it and/or display a user-friendly message
+                error_log("Connection failed: " . $e->getMessage());
+                die("Database connection failed. Please try again later.");
             }
         }
+        return self::$conn;
     }
+}
 
     /*class Db {
         private static $conn = null;
