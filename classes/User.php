@@ -106,8 +106,6 @@
         public function save(){
             //PDO connection
             $conn = Db::getConnection();
-            
-
             $statement = $conn->prepare('INSERT INTO user (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)');
             $statement->bindValue(':first_name', $this->first_name);
             $statement->bindValue(':last_name', $this->last_name);

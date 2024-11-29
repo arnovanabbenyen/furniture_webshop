@@ -96,9 +96,8 @@ a.logout{
 
   .collection{
     display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr));
-    justify-items: center;
-    padding-top: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-gap: 1em;
   }
   
   

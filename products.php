@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+
+include_once(__DIR__ . "/classes/Db.php");
+
+// Establish a connection to the database
+$conn = Db::getConnection();
+
+// Check if category_id is set in the query parameters
+$category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+
+if ($category_id) {
+    // Fetch product data from the database based on the category_id
+    $statement = $conn->prepare('SELECT * FROM product WHERE category_id = :category_id');
+    $statement->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+    $statement->execute();
+    $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Fetch all product data from the database
+    $statement = $conn->query('SELECT * FROM product');
+    $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,64 +31,21 @@
 </head>
 <body>
 
-<?php include_once("nav.inc.php"); ?>
+<?php include_once("nav.inc.php");?>
 
 <div class="collection">
     <div class="collection_product">
-        <a href="#">
-            <img src="https://www.studio-henk.nl/Images/emersya/chairs-without-background/801304/image-thumb__801304__TransparentSquare/C-ODE-B-orion-taupe12.png" alt="">
+    <?php foreach($products as $product): ?>
+        <a href="product.php?id=<?php echo $product['id']; ?>">
+            <img src="<?php echo $product['image']; ?>" alt="">
             <div class="item_product">
-                <p>Ode Chair</p>
-                <p>zwart, orion taupe12</p>
-                <p>Vanaf €399</p>
+                <p><?php echo $product['title']; ?></p>
+                <p><?php echo $product['description']; ?></p>
+                <p>Vanaf €<?php echo $product['price']; ?></p>
             </div>
         </a>
+    <?php endforeach; ?>
     </div>
-
-    <div class="collection_product">
-        <a href="#">
-            <img src="https://www.studio-henk.nl/Images/emersya/chairs-without-background/801304/image-thumb__801304__TransparentSquare/C-ODE-B-orion-taupe12.png" alt="">
-            <div class="item_product">
-                <p>Ode Chair</p>
-                <p>zwart, orion taupe12</p>
-                <p>Vanaf €399</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="collection_product">
-        <a href="#">
-            <img src="https://www.studio-henk.nl/Images/emersya/chairs-without-background/801304/image-thumb__801304__TransparentSquare/C-ODE-B-orion-taupe12.png" alt="">
-            <div class="item_product">
-                <p>Ode Chair</p>
-                <p>zwart, orion taupe12</p>
-                <p>Vanaf €399</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="collection_product">
-        <a href="#">
-            <img src="https://www.studio-henk.nl/Images/emersya/chairs-without-background/801304/image-thumb__801304__TransparentSquare/C-ODE-B-orion-taupe12.png" alt="">
-            <div class="item_product">
-                <p>Ode Chair</p>
-                <p>zwart, orion taupe12</p>
-                <p>Vanaf €399</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="collection_product">
-        <a href="#">
-            <img src="https://www.studio-henk.nl/Images/emersya/chairs-without-background/801304/image-thumb__801304__TransparentSquare/C-ODE-B-orion-taupe12.png" alt="">
-            <div class="item_product">
-                <p>Ode Chair</p>
-                <p>zwart, orion taupe12</p>
-                <p>Vanaf €399</p>
-            </div>
-        </a>
-    </div>
-</div>
     
 </body>
 </html>
