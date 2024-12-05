@@ -1,11 +1,34 @@
 <?php
 
 class Product {
+    private $id;
     private $title;
     private $short_description;
     private $long_description;
     private $price;
     private $category_id;
+
+
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     
 
@@ -128,4 +151,13 @@ class Product {
         return $statement->execute();
     }
 
+    public function delete(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("DELETE FROM product WHERE id = :id");
+        $statement->bindValue(':id', $this->id);
+        return $statement->execute();
+    }
+
+
+    
 }

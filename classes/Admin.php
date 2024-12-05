@@ -7,4 +7,8 @@
         public function canAddProduct(){
             return true;
         }
+
+        public function canDeleteProduct(){
+            return true;
+        }
     }

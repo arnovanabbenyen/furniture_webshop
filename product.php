@@ -2,7 +2,7 @@
 
   session_start();
     if($_SESSION['logged in'] != true){
-    header('Location: login.php');
+      header('Location: login.php');
   }
 
     if (!isset($_GET['id'])) {
@@ -10,6 +10,11 @@
     }
     
     include_once(__DIR__ . "/classes/Db.php");
+    include_once(__DIR__ . "/classes/Admin.php");
+    include_once(__DIR__ . "/classes/User.php");
+    include_once(__DIR__ . "/classes/Customer.php");
+    include_once(__DIR__ . "/classes/Product.php");
+
     
     // Establish a connection to the database
     $conn = Db::getConnection();
@@ -24,6 +29,25 @@
     if (!$product) {
         exit("Product not found");
     }
+
+    $getUser = User::getUser($_SESSION['email']);
+      if($getUser['is_admin'] != 0){
+      $user = new Admin();
+    }
+    else{
+      $user = new Customer();
+    }
+
+    if(!empty($_POST)){
+      var_dump($_POST);
+        $product = new Product();
+        $product->setId($_GET['id']);
+        $product->delete();
+        header('Location: products.php');
+    }
+
+  
+    
 
 
 ?><!DOCTYPE html>
@@ -54,9 +78,14 @@
             <p><?php echo ($product['long_description']); ?></p>
             <p>Price: €<?php echo ($product['price']); ?></p>
             <div class="card__footer">
-                <div class="action">
+              <form action="" method="POST">
+                <div class="action <?php if($user->canDeleteProduct()){echo 'hidden';}?>">
                     <button type="button">Add to cart</button>
                 </div>
+                <div class="action <?php if(!$user->canDeleteProduct()){echo 'hidden';}?>">
+                  <button type="submit" name="delete" value="<?php echo $product['id'];?>" >Delete product</button>
+                </div>
+              </form>
             </div>
           </div>
       </div>
