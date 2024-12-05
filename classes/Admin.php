@@ -11,4 +11,8 @@
         public function canDeleteProduct(){
             return true;
         }
+
+        public function canUpdateProduct(){
+            return true;
+        }
     }

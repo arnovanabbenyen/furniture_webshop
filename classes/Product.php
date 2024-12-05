@@ -158,6 +158,16 @@ class Product {
         return $statement->execute();
     }
 
-
+    public function update(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("UPDATE product SET title = :title, short_description = :short_description, long_description = :long_description, price = :price, category_id = :category_id WHERE id = :id");
+        $statement->bindValue(':title', $this->title);
+        $statement->bindValue(':short_description', $this->short_description);
+        $statement->bindValue(':long_description', $this->long_description);
+        $statement->bindValue(':price', $this->price);
+        $statement->bindValue(':category_id', $this->category_id);
+        $statement->bindValue(':id', $this->id);
+        return $statement->execute();
+    }
     
 }

@@ -39,7 +39,6 @@
     }
 
     if(!empty($_POST)){
-      var_dump($_POST);
         $product = new Product();
         $product->setId($_GET['id']);
         $product->delete();
@@ -74,16 +73,18 @@
             <img src="<?php echo $product['image']; ?>" alt="">
             </div>
           <div class="description">
-            <h1><?php echo ($product['title']), ($product['short_description']); ?></h1>
-            <p><?php echo ($product['long_description']); ?></p>
+            <h1><?php echo $product['title'] . ' ' . $product['short_description']; ?></h1>            <p><?php echo ($product['long_description']); ?></p>
             <p>Price: €<?php echo ($product['price']); ?></p>
             <div class="card__footer">
-              <form action="" method="POST">
+              <form action="" method="POST" class="delete_update_btn">
                 <div class="action <?php if($user->canDeleteProduct()){echo 'hidden';}?>">
                     <button type="button">Add to cart</button>
                 </div>
                 <div class="action <?php if(!$user->canDeleteProduct()){echo 'hidden';}?>">
                   <button type="submit" name="delete" value="<?php echo $product['id'];?>" >Delete product</button>
+                </div>
+                <div class="action <?php if(!$user->canUpdateProduct()){echo 'hidden';}?>">
+                    <a href="update_product.php?id=<?php echo $product['id']; ?>">Update product</a>
                 </div>
               </form>
             </div>
@@ -92,30 +93,6 @@
       
     </div>
   </main>
-
-  <section>
-  <div class="reviews">
-        <h2>Reviews</h2>
-        <div id="reviews-list">
-            <!-- Existing reviews will be loaded here -->
-        </div>
-        <h3>Leave a Review</h3>
-        <form id="review-form">
-            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-            <label for="rating">Rating:</label>
-            <select name="rating" id="rating">
-                <option value="1">1 Star</option>
-                <option value="2">2 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="5">5 Stars</option>
-            </select>
-            <label for="comment">Comment:</label>
-            <textarea name="comment" id="comment" required></textarea>
-            <button type="submit">Submit Review</button>
-        </form>
-    </div>
-  </section>
     
 </body>
 </html>

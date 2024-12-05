@@ -8,4 +8,8 @@ class Customer extends User{
     public function canDeleteProduct(){
         return false;
     }
+
+    public function canUpdateProduct(){
+        return false;
+    }
 }

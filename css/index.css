@@ -263,11 +263,17 @@ a.logout{
     
   .card__footer{
     text-align: center;
-  }    
+  }
+  
+  .delete_update_btn{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   .action button{
     cursor: pointer;
     border: 1px solid #F1F0EA;
-    padding: 14px 150px;
+    padding: 14px 130px;
     border-radius: 200px;
     background: #F1F0EA;
     font-family: "Open Sans", sans-serif;
@@ -275,6 +281,25 @@ a.logout{
     transition: 200ms;
   }       
   .action button:hover{
+    background: #fff;
+    color: #F1F0EA;
+  }
+
+  .action a{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border: 1px solid #F1F0EA;
+    padding: 14px 130px;
+    border-radius: 200px;
+    background: #F1F0EA;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    transition: 200ms;
+  }
+
+  .action a:hover{
     background: #fff;
     color: #F1F0EA;
   }
