@@ -114,6 +114,14 @@
             return $statement->execute();
         }
 
+        public static function getUser($email){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('SELECT * FROM user WHERE email = :email');
+            $statement->bindValue(':email', $email);
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }
+
         public static function getAll(){
             $conn = Db::getConnection();
             $statement = $conn->query('SELECT * FROM user');

@@ -1,11 +1,6 @@
 <?php
   
 
-  /*$host = 'localhost';
-  $db = 'webshop';
-  $user = 'root';
-  $db = new PDO("mysql:host=$host;dbname=$db", $user);*/
-
  
   
 
@@ -35,6 +30,15 @@
   <div class="video">
       <video muted loop playsinline autoplay src="https://assets.studio-henk.nl/assets/Images/2024-products/aw24/StudioHenk_AW24_brandvideo1_1920x1080_website.mp4" type="video/mp4"></video>
   </div>
+  <div class="video_overlay">
+    <div class="video_content">
+      <h1>Studio Henk</h1>
+      <p>Discover our new collection</p>
+      <form action="products.php" method="GET">
+        <input type="search" name="search" placeholder="Search for products...">
+      </form>
+    </div>
+  </div>
 
 </section>
 
@@ -45,7 +49,7 @@
 
   <div class="products">
     <div class="product">
-      <a href="#">
+      <a href="products.php?category_id=1">
         <img  src="Images/product_drc.webp" alt="">
         <div class="item__content">
           <p class="item__title">Dining room chairs</p>
@@ -54,7 +58,7 @@
     </div>
 
     <div class="product">
-      <a href="#">
+      <a href="products.php?category_id=2">
         <img  src="Images/product_sofa.jpg" alt="">
         <div class="item__content">
           <p class="item__title">Sofas</p>
@@ -63,7 +67,7 @@
     </div>
 
     <div class="product">
-      <a href="#">
+      <a href="products.php?category_id=3">
         <img  src="Images/product_armchair.jpg" alt="">
         <div class="item__content">
           <p class="item__title">Armchairs</p>
@@ -72,7 +76,7 @@
     </div>
 
     <div class="product">
-      <a href="#">
+      <a href="products.php?category_id=4">
         <img  src="Images/product_pouf.jpg" alt="">
         <div class="item__content">
           <p class="item__title">Poufs</p>

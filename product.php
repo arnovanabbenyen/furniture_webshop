@@ -1,5 +1,10 @@
 <?php
 
+  session_start();
+    if($_SESSION['logged in'] != true){
+    header('Location: login.php');
+  }
+
     if (!isset($_GET['id'])) {
         exit("404");
     }
@@ -33,12 +38,55 @@
 
     <?php include_once("nav.inc.php");?>
 
-    <div>
-        <img src="<?php echo $product['image']; ?>" alt="">
-        <h1><?php echo ($product['title']); ?></h1>
-        <p><?php echo ($product['description']); ?></p>
-        <p>Price: €<?php echo ($product['price']); ?></p>
+    <main>
+    <div class="card">
+      <div class="card__title">
+        <div class="icon">
+          <a href="products.php">←</a>
+        </div>
+      </div>
+      <div class="card__body">
+          <div class="image">
+            <img src="<?php echo $product['image']; ?>" alt="">
+            </div>
+          <div class="description">
+            <h1><?php echo ($product['title']), ($product['short_description']); ?></h1>
+            <p><?php echo ($product['long_description']); ?></p>
+            <p>Price: €<?php echo ($product['price']); ?></p>
+            <div class="card__footer">
+                <div class="action">
+                    <button type="button">Add to cart</button>
+                </div>
+            </div>
+          </div>
+      </div>
+      
     </div>
+  </main>
+
+  <section>
+  <div class="reviews">
+        <h2>Reviews</h2>
+        <div id="reviews-list">
+            <!-- Existing reviews will be loaded here -->
+        </div>
+        <h3>Leave a Review</h3>
+        <form id="review-form">
+            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+            <label for="rating">Rating:</label>
+            <select name="rating" id="rating">
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment" required></textarea>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+  </section>
     
 </body>
 </html>

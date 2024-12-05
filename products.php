@@ -1,6 +1,14 @@
 <?php
 
 include_once(__DIR__ . "/classes/Db.php");
+include_once(__DIR__ . "/classes/Admin.php");
+include_once(__DIR__ . "/classes/User.php");
+include_once(__DIR__ . "/classes/Customer.php");
+
+session_start();
+    if($_SESSION['logged in'] != true){
+        header('Location: login.php');
+    }
 
 // Establish a connection to the database
 $conn = Db::getConnection();
@@ -20,6 +28,14 @@ if ($category_id) {
     $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
+$getUser = User::getUser($_SESSION['email']);
+if($getUser['is_admin'] != 0){
+    $user = new Admin();
+}
+else{
+    $user = new Customer();
+}
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,18 +50,21 @@ if ($category_id) {
 <?php include_once("nav.inc.php");?>
 
 <div class="collection">
-    <div class="collection_product">
+    <div class="add_product <?php if(!$user->canAddProduct()){echo 'hidden';}?>">
+    <a href="new_product.php">+</a>
+    </div>
     <?php foreach($products as $product): ?>
+    <div class="collection_product">
         <a href="product.php?id=<?php echo $product['id']; ?>">
             <img src="<?php echo $product['image']; ?>" alt="">
             <div class="item_product">
                 <p><?php echo $product['title']; ?></p>
-                <p><?php echo $product['description']; ?></p>
+                <p><?php echo $product['short_description']; ?></p>
                 <p>Vanaf €<?php echo $product['price']; ?></p>
             </div>
         </a>
-    <?php endforeach; ?>
     </div>
+    <?php endforeach; ?>
     
 </body>
 </html>
