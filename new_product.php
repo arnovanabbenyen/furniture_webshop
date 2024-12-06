@@ -45,10 +45,13 @@
             <div class="icon">
                 <a href="products.php">←</a>
             </div>
-            <h2>Add New Product</h2>
         </div>
         <div class="card__body">
-            <form action="" method="post" enctype="multipart/form-data">
+            <div class="image">
+                <img src="Images/product_pouf.jpg" alt="">
+            </div>
+            <form class="add_product_form" action="" method="post" enctype="multipart/form-data">
+                <h1>Add New Product</h1>
                 <label for="title">Title:</label>
                 <input type="text" name="title" id="title" required>
                 
@@ -68,10 +71,12 @@
                     <option value="3">Armchairs</option>
                     <option value="4">Poufs</option>
                 </select>
+                <div class="action">
+                    <button type="submit">Add Product</button>
+                </div>
                 
         
                 
-                <button type="submit">Add Product</button>
             </form>
         </div>
     </div>
