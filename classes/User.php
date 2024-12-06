@@ -3,10 +3,32 @@
     include_once("Db.php");
 
     class User{
+        protected $id;
         protected $first_name;
         protected $last_name;
         protected $email;
         protected $password;
+
+
+        /**
+         * Get the value of id
+         */ 
+        public function getId()
+        {
+                return $this->id;
+        }
+
+        /**
+         * Set the value of id
+         *
+         * @return  self
+         */ 
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
+        }
 
         /**
          * Get the value of first_name
@@ -114,7 +136,7 @@
             return $statement->execute();
         }
 
-        public static function getUser($email){
+        public static function getUser($email,){
             $conn = Db::getConnection();
             $statement = $conn->prepare('SELECT * FROM user WHERE email = :email');
             $statement->bindValue(':email', $email);
@@ -128,4 +150,22 @@
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function update() {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('UPDATE user SET first_name = :first_name, last_name = :last_name, email = :email, password = :password WHERE email = :email');
+            $statement->bindValue(':first_name', $this->first_name);
+            $statement->bindValue(':last_name', $this->last_name);
+            $statement->bindValue(':email', $this->email);
+            $statement->bindValue(':password', $this->password);
+            return $statement->execute();
+        }
+    
+        // Check if email exists
+        public static function emailExists($email) {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('SELECT COUNT(*) FROM user WHERE email = :email');
+            $statement->bindValue(':email', $email);
+            $statement->execute();
+            return $statement->fetchColumn() > 0;
+        }
     }
