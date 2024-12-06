@@ -67,10 +67,13 @@ if(!empty($_POST)){
             <div class="icon">
                 <a href="product.php?id=<?php echo $id; ?>">←</a>
             </div>
-            <h2>Update Product</h2>
         </div>
         <div class="card__body">
-            <form action="" method="post" enctype="multipart/form-data">
+            <div class="image">
+                <img src="Images/product_pouf.jpg" alt="">
+            </div>
+            <form class="add_product_form" action="" method="post" enctype="multipart/form-data">
+                <h1>Update Product</h1>
                 <label for="title">Title:</label>
                 <input type="text" name="title" id="title" value="<?php echo $product['title']; ?>" required>
                 
@@ -90,10 +93,9 @@ if(!empty($_POST)){
                         <option value="3" <?php if ($product['category_id'] == 3) echo 'selected'; ?>>Armchairs</option>
                         <option value="4" <?php if ($product['category_id'] == 4) echo 'selected'; ?>>Poufs</option>
                     </select>
-                
-        
-                
-                <button type="submit">Update Product</button>
+                    <div class="action">
+                        <button type="submit">Update Product</button>
+                    </div>
             </form>
         </div>
     </div>
