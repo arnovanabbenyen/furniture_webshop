@@ -1,10 +1,13 @@
 <?php
 
+include_once("Db.php");
+
 class Product {
     private $id;
     private $title;
     private $short_description;
     private $long_description;
+    private $image;
     private $price;
     private $category_id;
 
@@ -96,6 +99,26 @@ class Product {
         return $this;
     }
 
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     
 
     /**
@@ -142,10 +165,11 @@ class Product {
 
     public function save(){
         $conn = Db::getConnection();
-        $statement = $conn->prepare("INSERT INTO product (title, short_description, long_description, price, category_id) VALUES (:title, :short_description, :long_description, :price, :category_id)");
+        $statement = $conn->prepare("INSERT INTO product (title, short_description, long_description, image,  price, category_id) VALUES (:title, :short_description, :long_description, :image, :price, :category_id)");
         $statement->bindValue(':title', $this->title);
         $statement->bindValue(':short_description', $this->short_description);
         $statement->bindValue(':long_description', $this->long_description);
+        $statement->bindValue(':image', $this->image);
         $statement->bindValue(':price', $this->price);
         $statement->bindValue(':category_id', $this->category_id);
         return $statement->execute();
@@ -158,16 +182,30 @@ class Product {
         return $statement->execute();
     }
 
-    public function update(){
+    public function update() {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("UPDATE product SET title = :title, short_description = :short_description, long_description = :long_description, price = :price, category_id = :category_id WHERE id = :id");
+        $statement = $conn->prepare("UPDATE product SET title = :title, short_description = :short_description, long_description = :long_description, image = :image, price = :price, category_id = :category_id WHERE id = :id");
         $statement->bindValue(':title', $this->title);
         $statement->bindValue(':short_description', $this->short_description);
         $statement->bindValue(':long_description', $this->long_description);
+        $statement->bindValue(':image', $this->image);
         $statement->bindValue(':price', $this->price);
         $statement->bindValue(':category_id', $this->category_id);
         $statement->bindValue(':id', $this->id);
         return $statement->execute();
     }
     
+    public static function getProductById($product_id) {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("SELECT * FROM product WHERE id = :id");
+        $statement->bindValue(":id", $product_id);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllProducts(){
+        $conn = Db::getConnection();
+        $statement = $conn->query('SELECT * FROM product');
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

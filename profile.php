@@ -1,6 +1,8 @@
 <?php
 include_once(__DIR__ . "/classes/User.php");
 include_once(__DIR__ . "/classes/Db.php");
+include_once(__DIR__ . "/classes/Product.php");
+include_once(__DIR__ . "/classes/Order.php");
 
 session_start();
 
@@ -12,6 +14,15 @@ if (!isset($_SESSION['email'])) {
 
 // Haal de huidige gegevens van de gebruiker op
 $user = User::getUser($_SESSION['email']);
+$orders = Order::getOrders($user['id']);
+
+// Fetch orders for the user
+$conn = Db::getConnection();
+$statement = $conn->prepare("SELECT * FROM `order` WHERE user_id = :user_id");
+$statement->bindValue(":user_id", $user['id']);
+$statement->execute();
+$orders = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 
 if (!$user) {
     // Als de gebruiker niet gevonden wordt, stuur de gebruiker terug naar de loginpagina
@@ -86,6 +97,31 @@ if (!empty($_POST)) {
         </div>
     </form>
 </div>
+
+<section class="user_orders">
+            <h2>Your orders</h2>
+            <?php foreach($orders as $order): ?>
+                    <article>
+                    <?php 
+                        $order_products = Order::getOrderProducts($order['id']);
+                        echo "<div class='order'>";
+                        echo "<p>Order: #".$order['id']."</p>";
+                        echo "<p>Order date: ".date("d-m-Y", strtotime($order['created_at']))."</p>";
+                        echo "<p>Status: ".$order['status']."</p>";
+                        echo "</div>";
+                        echo "<div class='products'>";
+                        foreach($order_products as $product){
+                            $product_id = $product['product_id'];
+                            $product = Product::getProductById($product_id);
+                            echo "<div class='product'>";
+                            echo "<div class='order_image_holder'><img src='".$product['image']."' alt='".$product['title']."'></div>";
+                            echo "<p>".$product['title']."</p>";
+                            echo "</div>";
+                        }
+                    ?>
+                    </article>
+                <?php endforeach;?>
+        </section>
     
 </body>
 </html
