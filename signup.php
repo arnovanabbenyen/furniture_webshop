@@ -9,6 +9,9 @@
             $user->setFirst_name($_POST['first_name']);
             $user->setLast_name($_POST['last_name']);
             $user->setEmail($_POST['email']);
+            if($user->emailExists($_POST['email'])) {
+                throw new Exception('This email is already registered.');
+            }
             $user->setPassword($_POST['password']);
             $user->save();
             header('Location: login.php');
