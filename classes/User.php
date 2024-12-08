@@ -8,6 +8,7 @@
         protected $last_name;
         protected $email;
         protected $password;
+        protected $digital_currency;
 
 
         /**
@@ -125,6 +126,26 @@
                 return $this;
         }
 
+        /**
+         * Get the value of digital_currency
+         */ 
+        public function getDigital_currency()
+        {
+                return $this->digital_currency;
+        }
+
+        /**
+         * Set the value of digital_currency
+         *
+         * @return  self
+         */ 
+        public function setDigital_currency()
+        {
+                $this->digital_currency;
+
+                return $this;
+        }
+
         public function save(){
             //PDO connection
             $conn = Db::getConnection();
@@ -167,5 +188,13 @@
             $statement->bindValue(':email', $email);
             $statement->execute();
             return $statement->fetchColumn() > 0;
+        }
+
+        public static function updateDigitalCurrency($new_balance){ 
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("UPDATE user SET digital_currency = :digital_currency WHERE email = :email");
+            $statement->bindValue(":digital_currency", $new_balance);
+            $statement->bindValue(":email", $_SESSION['email']);
+            $statement->execute();
         }
     }

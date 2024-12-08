@@ -12,4 +12,8 @@ class Customer extends User{
     public function canUpdateProduct(){
         return false;
     }
+
+    public function canBuy(){
+        return true;
+    }
 }

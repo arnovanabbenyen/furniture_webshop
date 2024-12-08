@@ -15,4 +15,8 @@
         public function canUpdateProduct(){
             return true;
         }
+
+        public function canBuy(){
+            return false;
+        }
     }
