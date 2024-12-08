@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="card__body">
-            <div class="image">
-                <img src="Images/product_pouf.jpg" alt="">
+            <div class="add_image">
+                <p>+</p>
             </div>
             <form class="add_product_form" action="" method="post" enctype="multipart/form-data">
                 <h1>Add New Product</h1>
@@ -60,6 +60,9 @@
                 
                 <label for="long_description">Long Description:</label>
                 <textarea name="long_description" id="long_description" required></textarea>
+
+                <label for="image">Image:</label>
+                <input type="url" name="image" id="image" required>
                 
                 <label for="price">Price:</label>
                 <input type="number" name="price" id="price" step="0.01" required>
@@ -81,30 +84,6 @@
         </div>
     </div>
 </main>
-
-  <section>
-  <div class="reviews">
-        <h2>Reviews</h2>
-        <div id="reviews-list">
-            <!-- Existing reviews will be loaded here -->
-        </div>
-        <h3>Leave a Review</h3>
-        <form id="review-form">
-            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-            <label for="rating">Rating:</label>
-            <select name="rating" id="rating">
-                <option value="1">1 Star</option>
-                <option value="2">2 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="5">5 Stars</option>
-            </select>
-            <label for="comment">Comment:</label>
-            <textarea name="comment" id="comment" required></textarea>
-            <button type="submit">Submit Review</button>
-        </form>
-    </div>
-  </section>
     
 </body>
 </html>

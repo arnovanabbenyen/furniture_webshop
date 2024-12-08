@@ -5,18 +5,14 @@ include_once(__DIR__ . "/classes/Product.php");
 include_once(__DIR__ . "/classes/Order.php");
 
 session_start();
-
-// Zorg ervoor dat de gebruiker is ingelogd
 if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
 
-// Haal de huidige gegevens van de gebruiker op
 $user = User::getUser($_SESSION['email']);
 $orders = Order::getOrders($user['id']);
 
-// Fetch orders for the user
 $conn = Db::getConnection();
 $statement = $conn->prepare("SELECT * FROM `order` WHERE user_id = :user_id");
 $statement->bindValue(":user_id", $user['id']);
@@ -25,15 +21,12 @@ $orders = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 if (!$user) {
-    // Als de gebruiker niet gevonden wordt, stuur de gebruiker terug naar de loginpagina
     header("Location: login.php");
     exit();
 }
 
-// Verwerk het formulier als er gegevens zijn verzonden
 if (!empty($_POST)) {
     try {
-        // Maak een nieuwe User instantie om de nieuwe gegevens in te stellen
         $updatedUser = new User();
         $updatedUser->setId($user['id']);
         $updatedUser->setFirst_name($_POST['first_name']);

@@ -15,10 +15,7 @@
   include_once(__DIR__ . "/classes/Product.php");
   include_once(__DIR__ . "/classes/Review.php");
 
-  // Establish a connection to the database
   $conn = Db::getConnection();
-
-  // Fetch product data from the database based on the provided id
   $id = $_GET['id'];
   $statement = $conn->prepare('SELECT * FROM product WHERE id = :id');
   $statement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -110,7 +107,6 @@
             <h1><?php echo $product['title'] . ' ' . $product['short_description']; ?></h1>
             <p><?php echo ($product['long_description']); ?></p>
             <p>Price: €<?php echo ($product['price']); ?></p>
-            <!-- Display user's digital currency and the remaining balance after purchase -->
              <div class="<?php if(!$user->canBuy()){echo 'hidden';}?>">
             <p>Your Digital Currency: €<?php echo number_format($_SESSION['digital_currency'], 2); ?></p>
             <p class="<?php if ($_SESSION['digital_currency'] >= $product['price']) { echo ''; } else { echo 'hidden'; } ?>">Remaining after purchase: €<?php echo number_format($_SESSION['digital_currency'] - $product['price'], 2); ?></p>

@@ -70,7 +70,7 @@ if(!empty($_POST)){
         </div>
         <div class="card__body">
             <div class="image">
-                <img src="Images/product_pouf.jpg" alt="">
+                <img src="<?php echo $product['image'] ?>"alt="">
             </div>
             <form class="add_product_form" action="" method="post" enctype="multipart/form-data">
                 <h1>Update Product</h1>
@@ -82,6 +82,9 @@ if(!empty($_POST)){
                 
                 <label for="long_description">Long Description:</label>
                 <textarea name="long_description" id="long_description" required><?php echo $product['long_description']; ?></textarea>
+
+                <label for="image">Image:</label>
+                <input type="url" name="image" id="image" required>
                 
                 <label for="price">Price:</label>
                 <input type="number" name="price" id="price" step="0.01" value="<?php echo $product['price']; ?>" required>

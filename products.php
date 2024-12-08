@@ -12,20 +12,15 @@ session_start();
         header('Location: login.php');
     }
 
-// Establish a connection to the database
 $conn = Db::getConnection();
-
-// Check if category_id is set in the query parameters
 $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
 
 if ($category_id) {
-    // Fetch product data from the database based on the category_id
     $statement = $conn->prepare('SELECT * FROM product WHERE category_id = :category_id');
     $statement->bindValue(':category_id', $category_id, PDO::PARAM_INT);
     $statement->execute();
     $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    // Fetch all product data from the database
     $statement = $conn->query('SELECT * FROM product');
     $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 }
