@@ -4,6 +4,8 @@ include_once(__DIR__ . "/classes/Db.php");
 include_once(__DIR__ . "/classes/Admin.php");
 include_once(__DIR__ . "/classes/User.php");
 include_once(__DIR__ . "/classes/Customer.php");
+include_once(__DIR__ . "/classes/Product.php");
+include_once(__DIR__ . "/classes/Order.php");
 
 session_start();
     if($_SESSION['logged in'] != true){
