@@ -64,8 +64,7 @@ if (!empty($_POST)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <title>Profiel bijwerken</title>
-</head>
+    <title>Profiel bijwerken - <?php echo htmlspecialchars($user['first_name']); ?></title></head>
 <body>
 
 <?php include_once("nav.inc.php"); ?>
