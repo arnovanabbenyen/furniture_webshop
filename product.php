@@ -69,11 +69,10 @@
           $_SESSION['digital_currency'] = $new_balance;
   
           // Toon succesbericht
-          echo "<p>Thanks for purchasing! Your new balance is €" . number_format($new_balance, 2) . ".</p>";
-      } else {
-          // Toon foutmelding als de digitale valuta niet genoeg is
-          echo "<p>You don't have enough digital currency to purchase this product.</p>";
-      }
+          $message = "Thanks for purchasing! Your new balance is €" . number_format($new_balance, 2) . ".";
+        } else {
+            $message = "You don't have enough digital currency to purchase this product.";
+        }
   }
   ?>
   
@@ -107,10 +106,12 @@
             <!-- Display user's digital currency and the remaining balance after purchase -->
              <div class="<?php if(!$user->canBuy()){echo 'hidden';}?>">
             <p>Your Digital Currency: €<?php echo number_format($_SESSION['digital_currency'], 2); ?></p>
-            <p>Remaining after purchase: €<?php echo number_format($_SESSION['digital_currency'] - $product['price'], 2); ?></p>
+            <p class="<?php if ($_SESSION['digital_currency'] >= $product['price']) { echo ''; } else { echo 'hidden'; } ?>">Remaining after purchase: €<?php echo number_format($_SESSION['digital_currency'] - $product['price'], 2); ?></p>
             </div>
             <?php if (isset($message)): ?>
-              <p><?php echo $message; ?></p>
+              <div class="notification">
+                <p><?php echo $message; ?></p>
+              </div>
             <?php endif; ?>
             <div class="card__footer">
               <?php if ($_SESSION['digital_currency'] >= $product['price']): ?>
