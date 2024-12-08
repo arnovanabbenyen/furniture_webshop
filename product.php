@@ -64,6 +64,13 @@
           $new_balance = $_SESSION['digital_currency'] - $product['price'];
           $user->setDigital_currency();
           $user->updateDigitalCurrency($new_balance);  // Werk de digitale valuta bij in de database
+
+          // Insert order details into the orders table
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("INSERT INTO `order` (user_id, product_id) VALUES (:user_id, :product_id)");
+        $statement->bindValue(":user_id", $user_id);
+        $statement->bindValue(":product_id", $product['id']);
+        $statement->execute();
   
           // Update the digital currency in the session
           $_SESSION['digital_currency'] = $new_balance;
@@ -145,6 +152,7 @@
         <div class="review-form">
           <input type="hidden" name="product_id" value="<?php echo $product_id['id']; ?>">
           <span class="rating">
+            <label for="rating">Give a rating:</label>
             <select name="custom_rating" id="custom_rating">
               <option value="0.0">0</option>
               <option value="1.0">1</option>
@@ -154,7 +162,8 @@
               <option value="5.0"  selected="selected">5</option>
             </select>
           </span>
-          <textarea name="custom_review" id="custom_review" placeholder="Write a review here"></textarea>
+          <label for="comment">Write a comment:</label>
+          <textarea name="custom_review" id="custom_review" placeholder="Write a comment here"></textarea>
           <input type="submit" value="comment" class="btn1" id="addReviewBtn" data-product_id="<?php echo $product_id['id']; ?>" data-user_id="<?php echo $user_id['id']; ?>">
         </div>
       </div>
